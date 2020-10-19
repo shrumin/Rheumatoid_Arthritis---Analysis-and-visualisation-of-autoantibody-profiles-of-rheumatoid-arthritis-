@@ -1,0 +1,50 @@
+setwd("~/Desktop/RA")
+
+dat <- read.csv(file="Erosion_dat.csv", row.names=1)
+
+#filtering and naming genes
+library(biomaRt)
+ensembl = useMart("ensembl",dataset="hsapiens_gene_ensembl")
+nonprotein=biomaRt::getBM(attributes = c("ensembl_transcript_id", "transcript_version", "ensembl_gene_id", "external_gene_name", "entrezgene_id", "description", "gene_biotype"), filters='biotype', values=c("rRNA"), mart = ensembl)
+#All protein coding genes
+t2g <- biomaRt::getBM(attributes = c("ensembl_transcript_id", "transcript_version", "ensembl_gene_id", "external_gene_name", "entrezgene_id", "description", "gene_biotype"), filters='biotype', values="protein_coding", mart = ensembl)
+
+#Ribosomal proteins
+ribo.proteins <- unique(t2g$ensembl_gene_id[grep("ribosomal protein", t2g$description)])
+
+
+rRNA.proteins <- unique(nonprotein$ensembl_gene_id[grep("rRNA", nonprotein$biotype)])
+
+#remove version from identifier
+rownames(dat) <- sub("\\.\\d+", "", rownames(dat))
+
+#remove any ribosomal proteins from the RNA-Seq from the counts
+dat <- dat[!rownames(dat) %in% ribo.proteins,]
+dat <- dat[!rownames(dat) %in% rRNA.proteins,]
+
+#design-exp table
+colTable <- read.csv("Erosion_exp_info.csv",row.names=1)
+
+#Deseq analysis
+
+library(DESeq2)
+dds <- DESeqDataSetFromMatrix(countData=dat,colData=colTable,design= ~ group)
+keep <- rowSums(counts(dds) >=10) >= 10
+dds <- dds[keep,]
+dds <- DESeq(dds,test="LRT",reduced = ~1)
+resultsNames(dds)
+
+#results
+res_Erosion<- results(dds,contrast=c("group","No_Erosion","Erosion"))
+res_Erosion_sort=res_Erosion[order(res_Erosion$padj),]
+res_Erosion_sig<- subset(res_Erosion_sort,padj<0.05)
+res_Erosion_sig$symbol <- t2g$external_gene_name[match(rownames(res_Erosion_sig), t2g$ensembl_gene_id)]
+res_Erosion_sig$entrezid <- t2g$entrezgene[match(rownames(res_Erosion_sig), t2g$ensembl_gene_id)]
+res_Erosion_sig=na.omit(res_Erosion_sig)
+write.csv(res_Erosion_sig, "sig_No_Erosion_vs_Erosion.csv", row.names=TRUE)
+
+#normalised count
+normalized_counts <- counts(dds, normalized=TRUE)
+write.csv(normalized_counts, file="normalized_counts_Erosion.csv", quote=F, col.names=NA)
+
+

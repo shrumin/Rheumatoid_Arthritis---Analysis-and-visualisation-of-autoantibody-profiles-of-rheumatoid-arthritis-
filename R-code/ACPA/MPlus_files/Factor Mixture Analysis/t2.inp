@@ -1,0 +1,40 @@
+TITLE: 2 - FMA analysis.
+
+DATA: FILE IS /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat;
+
+VARIABLE: 
+  NAMES = Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3 Sex AlcoholIntake SmokingStatus
+     DAS28CRP RA_Activity;
+  MISSING=.;
+  
+USEVARIABLES=Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3;
+
+CATEGORICAL= Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3;
+
+CLASSES = c(2);
+
+
+ANALYSIS:
+TYPE = MIXTURE;
+ALGORITHM=INTEGRATION;
+ADAPTIVE = OFF; 
+PROCESSORS = 8;
+
+MODEL:
+%OVERALL%
+f BY Filaggrin-hnRNP_A3;
+f*1; [f@0];
+%c#1%
+[Filaggrin$1-hnRNP_A3$1]; f*1;
+%c#2%
+[Filaggrin$1-hnRNP_A3$1];
+f*1;
+ 
+OUTPUT: TECH1 TECH8 TECH10;
+
+PLOT:
+type=plot3;
+series=Filaggrin-hnRNP_A3(*);

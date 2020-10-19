@@ -1,0 +1,894 @@
+Mplus VERSION 8.4 DEMO (Mac)
+MUTHEN & MUTHEN
+07/25/2020   9:39 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE: LCA - 3 step
+  DATA: FILE IS /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat;
+
+  VARIABLE:
+    NAMES = Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3
+       DAS28CRP RA_Activity;
+    MISSING=.;
+
+  USEVARIABLES=Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3 RA_Activity;
+
+  CATEGORICAL= Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3;
+  AUXILIARY=RA_Activity(R3STEP);
+
+  CLASSES=c(2);
+
+  ANALYSIS:
+  TYPE =MIXTURE;
+
+   MODEL:
+   !no model is needed, LCA is default;
+  OUTPUT: TECH1 TECH8;
+
+  Savedata:
+      file is class.txt;
+      save = cprob;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+LCA - 3 step
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         432
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   FILAGGRI    VIMENTIN    FIBRINOG    ALPHA_EN    HNRNP_A3
+
+Observed auxiliary variables
+   RA_ACTIVIT
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+
+Input data file(s)
+  /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    FILAGGRI
+      Category 1    0.528          228.000
+      Category 2    0.472          204.000
+    VIMENTIN
+      Category 1    0.433          187.000
+      Category 2    0.567          245.000
+    FIBRINOG
+      Category 1    0.248          107.000
+      Category 2    0.752          325.000
+    ALPHA_EN
+      Category 1    0.493          213.000
+      Category 2    0.507          219.000
+    HNRNP_A3
+      Category 1    0.336          145.000
+      Category 2    0.664          287.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -1000.174  533738           11
+           -1000.174  unperturbed      0
+           -1000.174  107446           12
+           -1000.174  637345           19
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       11
+
+Loglikelihood
+
+          H0 Value                       -1000.174
+          H0 Scaling Correction Factor      1.0437
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    2022.347
+          Bayesian (BIC)                  2067.100
+          Sample-Size Adjusted BIC        2032.192
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                             62.187
+          Degrees of Freedom                    20
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                             61.013
+          Degrees of Freedom                    20
+          P-Value                           0.0000
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        276.95980          0.64111
+       2        155.04020          0.35889
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        276.95980          0.64111
+       2        155.04020          0.35889
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              269          0.62269
+       2              163          0.37731
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.907
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.966    0.034
+    2   0.010    0.990
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      3.335    0.000
+    2     -4.586    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    FILAGGRI$1        -0.982      0.158     -6.227      0.000
+    VIMENTIN$1        -1.720      0.204     -8.443      0.000
+    FIBRINOG$1        -5.559      1.004     -5.538      0.000
+    ALPHA_EN$1        -1.086      0.160     -6.791      0.000
+    HNRNP_A3$1        -3.087      0.379     -8.154      0.000
+
+Latent Class 2
+
+ Thresholds
+    FILAGGRI$1         4.100      0.772      5.314      0.000
+    VIMENTIN$1         2.665      0.394      6.758      0.000
+    FIBRINOG$1         0.769      0.230      3.344      0.001
+    ALPHA_EN$1         2.485      0.335      7.423      0.000
+    HNRNP_A3$1         1.793      0.301      5.950      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                0.580      0.116      4.995      0.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+Latent Class 1
+
+ FILAGGRIN
+    Category 1         0.273      0.031      8.720      0.000
+    Category 2         0.727      0.031     23.274      0.000
+ VIMENTIN
+    Category 1         0.152      0.026      5.786      0.000
+    Category 2         0.848      0.026     32.325      0.000
+ FIBRINOGEN
+    Category 1         0.004      0.004      1.000      0.317
+    Category 2         0.996      0.004    259.576      0.000
+ ALPHA_ENOL
+    Category 1         0.252      0.030      8.362      0.000
+    Category 2         0.748      0.030     24.778      0.000
+ HNRNP_A3
+    Category 1         0.044      0.016      2.762      0.006
+    Category 2         0.956      0.016     60.536      0.000
+
+Latent Class 2
+
+ FILAGGRIN
+    Category 1         0.984      0.012     79.521      0.000
+    Category 2         0.016      0.012      1.318      0.188
+ VIMENTIN
+    Category 1         0.935      0.024     38.971      0.000
+    Category 2         0.065      0.024      2.712      0.007
+ FIBRINOGEN
+    Category 1         0.683      0.050     13.730      0.000
+    Category 2         0.317      0.050      6.364      0.000
+ ALPHA_ENOL
+    Category 1         0.923      0.024     38.834      0.000
+    Category 2         0.077      0.024      3.236      0.001
+ HNRNP_A3
+    Category 1         0.857      0.037     23.256      0.000
+    Category 2         0.143      0.037      3.871      0.000
+
+
+LATENT CLASS ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Latent Class 1 Compared to Latent Class 2
+
+ FILAGGRI
+    Category > 1     161.083    124.727      1.283      0.199
+ VIMENTIN
+    Category > 1      80.277     33.957      2.335      0.020
+ FIBRINOG
+    Category > 1     559.938    578.210      0.967      0.334
+ ALPHA_EN
+    Category > 1      35.557     12.749      2.711      0.007
+ HNRNP_A3
+    Category > 1     131.699     58.648      2.229      0.026
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.106E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+TESTS OF CATEGORICAL LATENT VARIABLE MULTINOMIAL LOGISTIC REGRESSIONS USING
+THE 3-STEP PROCEDURE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ C#1      ON
+    RA_ACTIV           0.274      0.108      2.545      0.011
+
+ Intercepts
+    C#1                0.060      0.225      0.268      0.789
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    RA_ACTIV          -0.274      0.108     -2.545      0.011
+
+ Intercepts
+    C#2               -0.060      0.225     -0.268      0.789
+
+
+ODDS RATIOS FOR TESTS OF CATEGORICAL LATENT VARIABLE MULTINOMIAL LOGISTIC REGRESSIONS
+USING THE 3-STEP PROCEDURE
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+ C#1      ON
+    RA_ACTIV           1.315      0.141      2.227      0.026
+
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    RA_ACTIV           0.761      0.082     -2.928      0.003
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                    1             2             3             4             5
+
+
+           TAU(U) FOR LATENT CLASS 2
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                    6             7             8             9            10
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                   11             0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+               -0.889        -1.270        -2.111        -1.028        -1.683
+
+
+           TAU(U) FOR LATENT CLASS 2
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                1.111         0.730        -0.111         0.972         0.317
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.11563692D+04    0.0000000    0.0000000  EM
+              2 -0.10218090D+04  134.5602129    0.1163644  EM
+              3 -0.10065652D+04   15.2437650    0.0149184  EM
+              4 -0.10022135D+04    4.3516723    0.0043233  EM
+              5 -0.10008500D+04    1.3635049    0.0013605  EM
+              6 -0.10004143D+04    0.4357486    0.0004354  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.15917452D+04    0.0000000    0.0000000  EM
+              2 -0.11680715D+04  423.6737282    0.2661693  EM
+              3 -0.10076333D+04  160.4382455    0.1373531  EM
+              4 -0.10009679D+04    6.6653512    0.0066149  EM
+              5 -0.10005027D+04    0.4652228    0.0004648  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18683318D+04    0.0000000    0.0000000  EM
+              2 -0.11114211D+04  756.9106420    0.4051265  EM
+              3 -0.10476465D+04   63.7746626    0.0573812  EM
+              4 -0.10234669D+04   24.1795715    0.0230799  EM
+              5 -0.10099083D+04   13.5585566    0.0132477  EM
+              6 -0.10035292D+04    6.3791160    0.0063165  EM
+              7 -0.10012707D+04    2.2584862    0.0022505  EM
+              8 -0.10005528D+04    0.7179100    0.0007170  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.16748360D+04    0.0000000    0.0000000  EM
+              2 -0.13850408D+04  289.7952478    0.1730290  EM
+              3 -0.12247078D+04  160.3329254    0.1157604  EM
+              4 -0.10836320D+04  141.0758118    0.1151914  EM
+              5 -0.10390731D+04   44.5588990    0.0411200  EM
+              6 -0.10189501D+04   20.1230326    0.0193663  EM
+              7 -0.10076685D+04   11.2816065    0.0110718  EM
+              8 -0.10026997D+04    4.9687374    0.0049309  EM
+              9 -0.10010081D+04    1.6916664    0.0016871  EM
+             10 -0.10004669D+04    0.5411929    0.0005406  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18924955D+04    0.0000000    0.0000000  EM
+              2 -0.12708368D+04  621.6586717    0.3284862  EM
+              3 -0.10704505D+04  200.3863030    0.1576806  EM
+              4 -0.10236861D+04   46.7644588    0.0436867  EM
+              5 -0.10094931D+04   14.1929287    0.0138645  EM
+              6 -0.10033191D+04    6.1739923    0.0061159  EM
+              7 -0.10012019D+04    2.1172449    0.0021102  EM
+              8 -0.10005306D+04    0.6713336    0.0006705  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25190627D+04    0.0000000    0.0000000  EM
+              2 -0.11240902D+04 1394.9725033    0.5537665  EM
+              3 -0.10258728D+04   98.2173337    0.0873750  EM
+              4 -0.10093233D+04   16.5495147    0.0161321  EM
+              5 -0.10029954D+04    6.3278682    0.0062694  EM
+              6 -0.10010593D+04    1.9361325    0.0019304  EM
+              7 -0.10004804D+04    0.5789130    0.0005783  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.23757645D+04    0.0000000    0.0000000  EM
+              2 -0.10972400D+04 1278.5245000    0.5381529  EM
+              3 -0.10543989D+04   42.8410418    0.0390444  EM
+              4 -0.10227094D+04   31.6894822    0.0300545  EM
+              5 -0.10085226D+04   14.1868803    0.0138719  EM
+              6 -0.10029303D+04    5.5922473    0.0055450  EM
+              7 -0.10010812D+04    1.8490758    0.0018437  EM
+              8 -0.10004915D+04    0.5897794    0.0005891  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25335226D+04    0.0000000    0.0000000  EM
+              2 -0.10379866D+04 1495.5359496    0.5902990  EM
+              3 -0.10137352D+04   24.2513652    0.0233639  EM
+              4 -0.10046572D+04    9.0780545    0.0089551  EM
+              5 -0.10015752D+04    3.0820436    0.0030678  EM
+              6 -0.10006458D+04    0.9293756    0.0009279  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.17948513D+04    0.0000000    0.0000000  EM
+              2 -0.10743335D+04  720.5177995    0.4014359  EM
+              3 -0.10099203D+04   64.4131774    0.0599564  EM
+              4 -0.10048356D+04    5.0847595    0.0050348  EM
+              5 -0.10025279D+04    2.3076645    0.0022966  EM
+              6 -0.10013723D+04    1.1555669    0.0011527  EM
+              7 -0.10007642D+04    0.6081332    0.0006073  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18776724D+04    0.0000000    0.0000000  EM
+              2 -0.10058110D+04  871.8613396    0.4643309  EM
+              3 -0.10012315D+04    4.5795381    0.0045531  EM
+              4 -0.10004912D+04    0.7403069    0.0007394  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.16069322D+04    0.0000000    0.0000000  EM
+              2 -0.10239650D+04  582.9671321    0.3627827  EM
+              3 -0.10099707D+04   13.9943428    0.0136668  EM
+              4 -0.10050804D+04    4.8902820    0.0048420  EM
+              5 -0.10026476D+04    2.4328056    0.0024205  EM
+              6 -0.10014335D+04    1.2140520    0.0012108  EM
+              7 -0.10007951D+04    0.6384347    0.0006375  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.17110254D+04    0.0000000    0.0000000  EM
+              2 -0.10893696D+04  621.6557851    0.3633235  EM
+              3 -0.10252185D+04   64.1511364    0.0588883  EM
+              4 -0.10081554D+04   17.0630593    0.0166433  EM
+              5 -0.10026324D+04    5.5230539    0.0054784  EM
+              6 -0.10009757D+04    1.6567107    0.0016524  EM
+              7 -0.10004561D+04    0.5195841    0.0005191  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.15712418D+04    0.0000000    0.0000000  EM
+              2 -0.10434536D+04  527.7881599    0.3359051  EM
+              3 -0.10083174D+04   35.1362061    0.0336730  EM
+              4 -0.10024717D+04    5.8457208    0.0057975  EM
+              5 -0.10008875D+04    1.5842048    0.0015803  EM
+              6 -0.10004233D+04    0.4641549    0.0004637  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.25441227D+04    0.0000000    0.0000000  EM
+              2 -0.11661430D+04 1377.9796700    0.5416326  EM
+              3 -0.11226999D+04   43.4431757    0.0372537  EM
+              4 -0.10718031D+04   50.8967745    0.0453343  EM
+              5 -0.10387149D+04   33.0881409    0.0308715  EM
+              6 -0.10191865D+04   19.5284476    0.0188006  EM
+              7 -0.10078464D+04   11.3401049    0.0111266  EM
+              8 -0.10027704D+04    5.0759592    0.0050364  EM
+              9 -0.10010302D+04    1.7402007    0.0017354  EM
+             10 -0.10004741D+04    0.5561048    0.0005555  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.32204718D+04    0.0000000    0.0000000  EM
+              2 -0.13754137D+04 1845.0581384    0.5729155  EM
+              3 -0.12455758D+04  129.8378945    0.0943992  EM
+              4 -0.11373747D+04  108.2010677    0.0868683  EM
+              5 -0.10890767D+04   48.2980305    0.0424645  EM
+              6 -0.10502499D+04   38.8267773    0.0356511  EM
+              7 -0.10275733D+04   22.6766088    0.0215916  EM
+              8 -0.10129653D+04   14.6080285    0.0142160  EM
+              9 -0.10046379D+04    8.3273886    0.0082208  EM
+             10 -0.10016268D+04    3.0110566    0.0029972  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.17716687D+04    0.0000000    0.0000000  EM
+              2 -0.10449199D+04  726.7487938    0.4102058  EM
+              3 -0.10197098D+04   25.2100303    0.0241263  EM
+              4 -0.10098580D+04    9.8518954    0.0096615  EM
+              5 -0.10059987D+04    3.8592870    0.0038216  EM
+              6 -0.10035654D+04    2.4332188    0.0024187  EM
+              7 -0.10020488D+04    1.5166143    0.0015112  EM
+              8 -0.10011502D+04    0.8986695    0.0008968  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18983534D+04    0.0000000    0.0000000  EM
+              2 -0.14120974D+04  486.2559594    0.2561462  EM
+              3 -0.13841525D+04   27.9449529    0.0197897  EM
+              4 -0.12594768D+04  124.6756510    0.0900736  EM
+              5 -0.11068126D+04  152.6641854    0.1212124  EM
+              6 -0.10499306D+04   56.8820048    0.0513926  EM
+              7 -0.10255313D+04   24.3993010    0.0232390  EM
+              8 -0.10112630D+04   14.2682909    0.0139131  EM
+              9 -0.10041312D+04    7.1317987    0.0070524  EM
+             10 -0.10014689D+04    2.6623495    0.0026514  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.24084983D+04    0.0000000    0.0000000  EM
+              2 -0.13008956D+04 1107.6026654    0.4598727  EM
+              3 -0.11705356D+04  130.3599945    0.1002079  EM
+              4 -0.11065796D+04   63.9559856    0.0546382  EM
+              5 -0.10590562D+04   47.5234244    0.0429462  EM
+              6 -0.10316649D+04   27.3913189    0.0258639  EM
+              7 -0.10147818D+04   16.8830533    0.0163649  EM
+              8 -0.10056639D+04    9.1179315    0.0089851  EM
+              9 -0.10019864D+04    3.6774733    0.0036568  EM
+             10 -0.10007818D+04    1.2046163    0.0012022  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.21218912D+04    0.0000000    0.0000000  EM
+              2 -0.14390360D+04  682.8552624    0.3218145  EM
+              3 -0.14035042D+04   35.5318044    0.0246914  EM
+              4 -0.13308712D+04   72.6329357    0.0517511  EM
+              5 -0.11880713D+04  142.7999685    0.1072981  EM
+              6 -0.10914319D+04   96.6394061    0.0813414  EM
+              7 -0.10520314D+04   39.4004398    0.0360998  EM
+              8 -0.10296692D+04   22.3622049    0.0212562  EM
+              9 -0.10143906D+04   15.2785816    0.0148383  EM
+             10 -0.10053998D+04    8.9907793    0.0088632  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.23458794D+04    0.0000000    0.0000000  EM
+              2 -0.10831342D+04 1262.7452130    0.5382822  EM
+              3 -0.10067373D+04   76.3968907    0.0705332  EM
+              4 -0.10013033D+04    5.4339962    0.0053976  EM
+              5 -0.10004637D+04    0.8395587    0.0008385  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.18962911D+04    0.0000000    0.0000000  EM
+              2 -0.13637311D+04  532.5600752    0.2808430  EM
+              3 -0.11355348D+04  228.1962338    0.1673323  EM
+              4 -0.10265492D+04  108.9856299    0.0959774  EM
+              5 -0.10124824D+04   14.0667828    0.0137030  EM
+              6 -0.10077866D+04    4.6957967    0.0046379  EM
+              7 -0.10046783D+04    3.1083345    0.0030843  EM
+              8 -0.10027070D+04    1.9712901    0.0019621  EM
+              9 -0.10015287D+04    1.1782602    0.0011751  EM
+             10 -0.10008568D+04    0.6719520    0.0006709  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+              6 -0.10004143D+04    0.4357486    0.0004354  EM
+              7 -0.10002637D+04    0.1505153    0.0001505  EM
+              8 -0.10002085D+04    0.0552423    0.0000552  EM
+              9 -0.10001874D+04    0.0210841    0.0000211  EM
+             10 -0.10001792D+04    0.0082474    0.0000082  EM
+             11 -0.10001759D+04    0.0032763    0.0000033  EM
+             12 -0.10001746D+04    0.0013143    0.0000013  EM
+             13 -0.10001741D+04    0.0005305    0.0000005  EM
+             14 -0.10001738D+04    0.0002150    0.0000002  EM
+             15 -0.10001738D+04    0.0000873    0.0000001  EM
+             16 -0.10001737D+04    0.0000355    0.0000000  EM
+             17 -0.10001737D+04    0.0000145    0.0000000  EM
+             18 -0.10001737D+04    0.0000059    0.0000000  EM
+             19 -0.10001737D+04    0.0000024    0.0000000  EM
+             20 -0.10001737D+04    0.0000010    0.0000000  EM
+             21 -0.10001737D+04    0.0000004    0.0000000  EM
+             22 -0.10001737D+04    0.0000002    0.0000000  EM
+             23 -0.10001737D+04    0.0000001    0.0000000  EM
+             24 -0.10001737D+04    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+              6 -0.10004233D+04    0.4641549    0.0004637  EM
+              7 -0.10002668D+04    0.1565780    0.0001565  EM
+              8 -0.10002096D+04    0.0571425    0.0000571  EM
+              9 -0.10001879D+04    0.0217703    0.0000218  EM
+             10 -0.10001793D+04    0.0085090    0.0000085  EM
+             11 -0.10001760D+04    0.0033788    0.0000034  EM
+             12 -0.10001746D+04    0.0013550    0.0000014  EM
+             13 -0.10001741D+04    0.0005468    0.0000005  EM
+             14 -0.10001738D+04    0.0002216    0.0000002  EM
+             15 -0.10001738D+04    0.0000900    0.0000001  EM
+             16 -0.10001737D+04    0.0000366    0.0000000  EM
+             17 -0.10001737D+04    0.0000149    0.0000000  EM
+             18 -0.10001737D+04    0.0000061    0.0000000  EM
+             19 -0.10001737D+04    0.0000025    0.0000000  EM
+             20 -0.10001737D+04    0.0000010    0.0000000  EM
+             21 -0.10001737D+04    0.0000004    0.0000000  EM
+             22 -0.10001737D+04    0.0000002    0.0000000  EM
+             23 -0.10001737D+04    0.0000001    0.0000000  EM
+             24 -0.10001737D+04    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+              7 -0.10004561D+04    0.5195841    0.0005191  EM
+              8 -0.10002787D+04    0.1773672    0.0001773  EM
+              9 -0.10002141D+04    0.0645956    0.0000646  EM
+             10 -0.10001896D+04    0.0245322    0.0000245  EM
+             11 -0.10001800D+04    0.0095661    0.0000096  EM
+             12 -0.10001762D+04    0.0037926    0.0000038  EM
+             13 -0.10001747D+04    0.0015195    0.0000015  EM
+             14 -0.10001741D+04    0.0006128    0.0000006  EM
+             15 -0.10001739D+04    0.0002482    0.0000002  EM
+             16 -0.10001738D+04    0.0001008    0.0000001  EM
+             17 -0.10001737D+04    0.0000410    0.0000000  EM
+             18 -0.10001737D+04    0.0000167    0.0000000  EM
+             19 -0.10001737D+04    0.0000068    0.0000000  EM
+             20 -0.10001737D+04    0.0000028    0.0000000  EM
+             21 -0.10001737D+04    0.0000011    0.0000000  EM
+             22 -0.10001737D+04    0.0000005    0.0000000  EM
+             23 -0.10001737D+04    0.0000002    0.0000000  EM
+             24 -0.10001737D+04    0.0000001    0.0000000  EM
+             25 -0.10001737D+04    0.0000000    0.0000000  EM
+             26 -0.10001737D+04    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+              5 -0.10004637D+04    0.8395587    0.0008385  EM
+              6 -0.10002725D+04    0.1912411    0.0001912  EM
+              7 -0.10002109D+04    0.0615224    0.0000615  EM
+              8 -0.10001883D+04    0.0226660    0.0000227  EM
+              9 -0.10001795D+04    0.0087767    0.0000088  EM
+             10 -0.10001760D+04    0.0034750    0.0000035  EM
+             11 -0.10001746D+04    0.0013922    0.0000014  EM
+             12 -0.10001741D+04    0.0005616    0.0000006  EM
+             13 -0.10001738D+04    0.0002275    0.0000002  EM
+             14 -0.10001738D+04    0.0000924    0.0000001  EM
+             15 -0.10001737D+04    0.0000376    0.0000000  EM
+             16 -0.10001737D+04    0.0000153    0.0000000  EM
+             17 -0.10001737D+04    0.0000062    0.0000000  EM
+             18 -0.10001737D+04    0.0000025    0.0000000  EM
+             19 -0.10001737D+04    0.0000010    0.0000000  EM
+             20 -0.10001737D+04    0.0000004    0.0000000  EM
+             21 -0.10001737D+04    0.0000002    0.0000000  EM
+             22 -0.10001737D+04    0.0000001    0.0000000  EM
+             23 -0.10001737D+04    0.0000000    0.0000000  EM
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.30214343D+03    0.0000000    0.0000000  EM
+              2 -0.28326674D+03   18.8766921    0.0624759  EM
+              3 -0.28294111D+03    0.3256301    0.0011496  EM
+              4 -0.28293512D+03    0.0059828    0.0000211  EM
+              5 -0.28293503D+03    0.0000960    0.0000003  EM
+              6 -0.28293503D+03    0.0000015    0.0000000  EM
+              7 -0.28293503D+03    0.0000000    0.0000000  EM
+              8 -0.28293503D+03    0.0000000    0.0000000  EM
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    class.txt
+
+  Order and format of variables
+
+    FILAGGRI       F10.3
+    VIMENTIN       F10.3
+    FIBRINOG       F10.3
+    ALPHA_EN       F10.3
+    HNRNP_A3       F10.3
+    RA_ACTIV       F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    C              F10.3
+
+  Save file format
+    9F10.3
+
+  Save file record length    10000
+
+
+     Beginning Time:  09:39:35
+        Ending Time:  09:39:35
+       Elapsed Time:  00:00:00
+
+
+Mplus VERSION 8.4 DEMO (Mac) has the following limitations:
+  Maximum number of dependent variables: 6
+  Maximum number of independent variables: 2
+  Maximum number of between variables: 2
+  Maximum number of continuous latent variables in time series analysis: 2
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

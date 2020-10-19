@@ -1,0 +1,1 @@
+Each file contains the input as well as output files for each comparison done along with the R script. 

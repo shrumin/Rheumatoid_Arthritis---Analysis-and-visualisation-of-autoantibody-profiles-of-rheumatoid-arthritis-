@@ -1,0 +1,1077 @@
+Mplus VERSION 8.4 DEMO (Mac)
+MUTHEN & MUTHEN
+07/14/2020  11:13 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: 2 - FMA analysis.
+
+  DATA: FILE IS /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat;
+
+  VARIABLE:
+    NAMES = Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3 Sex AlcoholIntake SmokingStatus
+       DAS28CRP RA_Activity;
+    MISSING=.;
+
+  USEVARIABLES=Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3;
+
+  CATEGORICAL= Filaggrin Vimentin Fibrinogen
+       alpha_enolase hnRNP_A3;
+
+  CLASSES = c(2);
+
+
+  ANALYSIS:
+  TYPE = MIXTURE;
+  ALGORITHM=INTEGRATION;
+  ADAPTIVE = OFF;
+  PROCESSORS = 8;
+
+  MODEL:
+  %OVERALL%
+  f BY Filaggrin-hnRNP_A3;
+  f*1; [f@0];
+  %c#1%
+  [Filaggrin$1-hnRNP_A3$1]; f*1;
+  %c#2%
+  [Filaggrin$1-hnRNP_A3$1];
+  f*1;
+
+  OUTPUT: TECH1 TECH8 TECH10;
+
+  PLOT:
+  type=plot3;
+  series=Filaggrin-hnRNP_A3(*);
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+2 - FMA analysis.
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         147
+
+Number of dependent variables                                    5
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   FILAGGRI    VIMENTIN    FIBRINOG    ALPHA_EN    HNRNP_A3
+
+Continuous latent variables
+   F
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                          OFF
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+Link                                                         LOGIT
+Cholesky                                                        ON
+
+Input data file(s)
+  /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             1
+     Number of y missing data patterns           0
+     Number of u missing data patterns           1
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    FILAGGRI
+      Category 1    0.565           83.000
+      Category 2    0.435           64.000
+    VIMENTIN
+      Category 1    0.449           66.000
+      Category 2    0.551           81.000
+    FIBRINOG
+      Category 1    0.218           32.000
+      Category 2    0.782          115.000
+    ALPHA_EN
+      Category 1    0.497           73.000
+      Category 2    0.503           74.000
+    HNRNP_A3
+      Category 1    0.320           47.000
+      Category 2    0.680          100.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+            -339.447  462953           7
+            -339.633  399671           13
+            -339.800  851945           18
+            -339.828  285380           1
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+     ONE OR MORE PARAMETERS WERE FIXED TO AVOID SINGULARITY OF THE
+     INFORMATION MATRIX. THE SINGULARITY IS MOST LIKELY BECAUSE THE
+     MODEL IS NOT IDENTIFIED, OR BECAUSE OF EMPTY CELLS IN THE JOINT
+     DISTRIBUTION OF THE CATEGORICAL VARIABLES IN THE MODEL.
+     THE FOLLOWING PARAMETERS WERE FIXED:
+     Parameter 9, %C#1%: [ FIBRINOGEN$1 ]
+     Parameter 14, %C#2%: [ FIBRINOGEN$1 ]
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       17
+
+Loglikelihood
+
+          H0 Value                        -339.447
+          H0 Scaling Correction Factor     12.5215
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                     712.894
+          Bayesian (BIC)                   763.731
+          Sample-Size Adjusted BIC         709.934
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                              1.931
+          Degrees of Freedom                    14
+          P-Value                           0.9999
+
+          Likelihood Ratio Chi-Square
+
+          Value                              2.796
+          Degrees of Freedom                    14
+          P-Value                           0.9994
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1         70.92407          0.48248
+       2         76.07593          0.51752
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1         70.92407          0.48248
+       2         76.07593          0.51752
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1               75          0.51020
+       2               72          0.48980
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.619
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.922    0.078
+    2   0.127    0.873
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      2.467    0.000
+    2     -1.932    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ F        BY
+    FILAGGRIN          1.000      0.000    999.000    999.000
+    VIMENTIN           0.301    138.367      0.002      0.998
+    FIBRINOGEN         5.147   1631.454      0.003      0.997
+    ALPHA_ENOL         0.226     99.204      0.002      0.998
+    HNRNP_A3           0.403    159.751      0.003      0.998
+
+ Means
+    F                  0.000      0.000    999.000    999.000
+
+ Thresholds
+    FILAGGRI$1        -7.590   4601.971     -0.002      0.999
+    VIMENTIN$1        -1.184    324.391     -0.004      0.997
+    FIBRINOG$1      -160.715      0.000    999.000    999.000
+    ALPHA_EN$1        -1.244    250.574     -0.005      0.996
+    HNRNP_A3$1        -3.759    441.133     -0.009      0.993
+
+ Variances
+    F                 72.428  64107.391      0.001      0.999
+
+Latent Class 2
+
+ F        BY
+    FILAGGRIN          1.000      0.000    999.000    999.000
+    VIMENTIN           0.301    138.367      0.002      0.998
+    FIBRINOGEN         5.147   1631.454      0.003      0.997
+    ALPHA_ENOL         0.226     99.204      0.002      0.998
+    HNRNP_A3           0.403    159.751      0.003      0.998
+
+ Means
+    F                  0.000      0.000    999.000    999.000
+
+ Thresholds
+    FILAGGRI$1        17.234   7818.309      0.002      0.998
+    VIMENTIN$1         0.391    332.416      0.001      0.999
+    FIBRINOG$1       -21.989      0.000    999.000    999.000
+    ALPHA_EN$1         1.427    145.211      0.010      0.992
+    HNRNP_A3$1        -0.549    263.150     -0.002      0.998
+
+ Variances
+    F                161.783  97253.836      0.002      0.999
+
+Categorical Latent Variables
+
+ Means
+    C#1               -0.070      9.883     -0.007      0.994
+
+
+IRT PARAMETERIZATION
+
+Latent Class 1
+
+ Item Discriminations
+
+ F        BY
+    FILAGGRIN          8.510   3766.375      0.002      0.998
+    VIMENTIN           2.559     45.176      0.057      0.955
+    FIBRINOGEN        43.804   5501.267      0.008      0.994
+    ALPHA_ENOL         1.925      7.755      0.248      0.804
+    HNRNP_A3           3.429    157.855      0.022      0.983
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    FILAGGRIN         -0.892    146.069     -0.006      0.995
+    VIMENTIN          -0.463    134.939     -0.003      0.997
+    FIBRINOGEN        -3.669    460.782     -0.008      0.994
+    ALPHA_ENOL        -0.646    127.560     -0.005      0.996
+    HNRNP_A3          -1.096     78.185     -0.014      0.989
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+Latent Class 2
+
+ Item Discriminations
+
+ F        BY
+    FILAGGRIN         12.719   3823.056      0.003      0.997
+    VIMENTIN           3.824    610.501      0.006      0.995
+    FIBRINOGEN        65.467   1073.686      0.061      0.951
+    ALPHA_ENOL         2.877    396.986      0.007      0.994
+    HNRNP_A3           5.124    491.704      0.010      0.992
+
+ Means
+    F                  0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    FILAGGRIN          1.355    207.417      0.007      0.995
+    VIMENTIN           0.102    103.247      0.001      0.999
+    FIBRINOGEN        -0.336      5.509     -0.061      0.951
+    ALPHA_ENOL         0.496    118.880      0.004      0.997
+    HNRNP_A3          -0.107     41.075     -0.003      0.998
+
+ Variances
+    F                  1.000      0.000      0.000      1.000
+
+
+RESULTS IN PROBABILITY SCALE
+
+                    Estimate
+
+Latent Class 1
+
+ FILAGGRIN
+    Category 1         0.191
+    Category 2         0.809
+ VIMENTIN
+    Category 1         0.351
+    Category 2         0.649
+ FIBRINOGEN
+    Category 1         0.000
+    Category 2         1.000
+ ALPHA_ENOL
+    Category 1         0.315
+    Category 2         0.685
+ HNRNP_A3
+    Category 1         0.165
+    Category 2         0.835
+
+Latent Class 2
+
+ FILAGGRIN
+    Category 1         0.910
+    Category 2         0.090
+ VIMENTIN
+    Category 1         0.537
+    Category 2         0.463
+ FIBRINOGEN
+    Category 1         0.366
+    Category 2         0.634
+ ALPHA_ENOL
+    Category 1         0.664
+    Category 2         0.336
+ HNRNP_A3
+    Category 1         0.460
+    Category 2         0.540
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.485E-08
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ FILAGGRI           0
+ VIMENTIN           1
+ FIBRINOG           2
+ ALPHA_EN           3
+ HNRNP_A3           4
+
+
+           THETA
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+ FILAGGRI           0
+ VIMENTIN           0             0
+ FIBRINOG           0             0             0
+ ALPHA_EN           0             0             0             0
+ HNRNP_A3           0             0             0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  5
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           LAMBDA
+              F
+              ________
+ FILAGGRI           0
+ VIMENTIN           1
+ FIBRINOG           2
+ ALPHA_EN           3
+ HNRNP_A3           4
+
+
+           THETA
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+ FILAGGRI           0
+ VIMENTIN           0             0
+ FIBRINOG           0             0             0
+ ALPHA_EN           0             0             0             0
+ HNRNP_A3           0             0             0             0             0
+
+
+           ALPHA
+              F
+              ________
+                    0
+
+
+           BETA
+              F
+              ________
+ F                  0
+
+
+           PSI
+              F
+              ________
+ F                  6
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                    7             8             9            10            11
+
+
+           TAU(U) FOR LATENT CLASS 2
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                   12            13            14            15            16
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                   17             0
+
+
+           GAMMA(C)
+              F
+              ________
+ C#1                0
+ C#2                0
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ FILAGGRI       1.000
+ VIMENTIN       1.000
+ FIBRINOG       1.000
+ ALPHA_EN       1.000
+ HNRNP_A3       1.000
+
+
+           THETA
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+ FILAGGRI       1.000
+ VIMENTIN       0.000         1.000
+ FIBRINOG       0.000         0.000         1.000
+ ALPHA_EN       0.000         0.000         0.000         1.000
+ HNRNP_A3       0.000         0.000         0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              F
+              ________
+ FILAGGRI       1.000
+ VIMENTIN       1.000
+ FIBRINOG       1.000
+ ALPHA_EN       1.000
+ HNRNP_A3       1.000
+
+
+           THETA
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+ FILAGGRI       1.000
+ VIMENTIN       0.000         1.000
+ FIBRINOG       0.000         0.000         1.000
+ ALPHA_EN       0.000         0.000         0.000         1.000
+ HNRNP_A3       0.000         0.000         0.000         0.000         1.000
+
+
+           ALPHA
+              F
+              ________
+                0.000
+
+
+           BETA
+              F
+              ________
+ F              0.000
+
+
+           PSI
+              F
+              ________
+ F              1.000
+
+
+     STARTING VALUES FOR LATENT CLASS INDICATOR MODEL PART
+
+
+           TAU(U) FOR LATENT CLASS 1
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+               -0.740        -1.205        -2.279        -1.014        -1.755
+
+
+           TAU(U) FOR LATENT CLASS 2
+              FILAGGRI      VIMENTIN      FIBRINOG      ALPHA_EN      HNRNP_A3
+              ________      ________      ________      ________      ________
+                1.260         0.795        -0.279         0.986         0.245
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+           GAMMA(C)
+              F
+              ________
+ C#1            0.000
+ C#2            0.000
+
+
+TECHNICAL 10 OUTPUT
+
+
+     MODEL FIT INFORMATION FOR THE LATENT CLASS INDICATOR MODEL PART
+
+
+     RESPONSE PATTERNS
+
+     No.  Pattern    No.  Pattern    No.  Pattern    No.  Pattern
+       1  00101        2  01101        3  00000        4  11111
+       5  11101        6  00110        7  00100        8  01111
+       9  00001       10  00111       11  10101       12  10111
+      13  01100       14  00010       15  01000       16  10100
+      17  11110       18  10110       19  01110
+
+
+     RESPONSE PATTERN FREQUENCIES AND CHI-SQUARE CONTRIBUTIONS
+
+    Response          Frequency     Standardized  Chi-square Contribution
+     Pattern    Observed  Estimated   Residual    Pearson   Loglikelihood  Deleted
+                                     (z-score)
+         1         9.00       8.10       0.32       0.10         1.89
+         2        10.00      10.62      -0.20       0.04        -1.21
+         3        27.00      27.19      -0.04       0.00        -0.38
+         4        43.00      43.05      -0.01       0.00        -0.10
+         5         7.00       6.58       0.17       0.03         0.87
+         6         2.00       1.98       0.02       0.00         0.04
+         7         9.00       9.01       0.00       0.00        -0.02
+         8        15.00      14.83       0.05       0.00         0.34
+         9         2.00       1.78       0.17       0.03         0.48
+        10         3.00       3.64      -0.34       0.11        -1.16
+        11         4.00       4.14      -0.07       0.00        -0.28
+        12         7.00       7.26      -0.10       0.01        -0.51
+        13         2.00       2.44      -0.29       0.08        -0.80
+        14         1.00       0.79       0.24       0.06         0.48
+        15         2.00       1.32       0.59       0.34         1.65
+        16         1.00       0.94       0.07       0.00         0.13
+        17         1.00       0.70       0.36       0.13         0.72
+        18         1.00       0.80       0.22       0.05         0.45
+        19         1.00       0.89       0.12       0.01         0.23
+
+     THE TOTAL PEARSON CHI-SQUARE CONTRIBUTION FROM EMPTY CELLS IS         0.93
+
+
+     UNIVARIATE MODEL FIT INFORMATION
+
+                               Estimated Probabilities
+                                                  Standardized
+     Variable              H1           H0          Residual
+                                                   (z-score)
+     FILAGGRI
+       Category 1        0.565        0.565          -0.004
+       Category 2        0.435        0.435           0.004
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+     VIMENTIN
+       Category 1        0.449        0.447           0.043
+       Category 2        0.551        0.553          -0.043
+       Univariate Pearson Chi-Square                  0.002
+       Univariate Log-Likelihood Chi-Square           0.002
+     FIBRINOG
+       Category 1        0.218        0.214           0.101
+       Category 2        0.782        0.786          -0.101
+       Univariate Pearson Chi-Square                  0.010
+       Univariate Log-Likelihood Chi-Square           0.010
+     ALPHA_EN
+       Category 1        0.497        0.496           0.025
+       Category 2        0.503        0.504          -0.025
+       Univariate Pearson Chi-Square                  0.001
+       Univariate Log-Likelihood Chi-Square           0.001
+     HNRNP_A3
+       Category 1        0.320        0.317           0.063
+       Category 2        0.680        0.683          -0.063
+       Univariate Pearson Chi-Square                  0.004
+       Univariate Log-Likelihood Chi-Square           0.004
+
+       Overall Univariate Pearson Chi-Square                         0.017
+       Overall Univariate Log-Likelihood Chi-Square                  0.017
+
+
+     BIVARIATE MODEL FIT INFORMATION
+
+                                              Estimated Probabilities
+                                                                 Standardized
+     Variable       Variable              H1           H0          Residual
+                                                                  (z-score)
+     FILAGGRI       VIMENTIN
+       Category 1     Category 1        0.361        0.358           0.068
+       Category 1     Category 2        0.204        0.207          -0.086
+       Category 2     Category 1        0.088        0.089          -0.040
+       Category 2     Category 2        0.347        0.346           0.028
+       Bivariate Pearson Chi-Square                                  0.011
+       Bivariate Log-Likelihood Chi-Square                           0.011
+     FILAGGRI       FIBRINOG
+       Category 1     Category 1        0.218        0.214           0.101
+       Category 1     Category 2        0.347        0.351          -0.091
+       Category 2     Category 1        0.000        0.000           0.000
+       Category 2     Category 2        0.435        0.435           0.004
+       Bivariate Pearson Chi-Square                                  0.013
+       Bivariate Log-Likelihood Chi-Square                           0.013
+     FILAGGRI       ALPHA_EN
+       Category 1     Category 1        0.415        0.413           0.053
+       Category 1     Category 2        0.150        0.152          -0.078
+       Category 2     Category 1        0.082        0.083          -0.049
+       Category 2     Category 2        0.354        0.352           0.032
+       Bivariate Pearson Chi-Square                                  0.010
+       Bivariate Log-Likelihood Chi-Square                           0.010
+     FILAGGRI       HNRNP_A3
+       Category 1     Category 1        0.299        0.297           0.054
+       Category 1     Category 2        0.265        0.267          -0.060
+       Category 2     Category 1        0.020        0.020           0.034
+       Category 2     Category 2        0.415        0.415          -0.006
+       Bivariate Pearson Chi-Square                                  0.006
+       Bivariate Log-Likelihood Chi-Square                           0.006
+     VIMENTIN       FIBRINOG
+       Category 1     Category 1        0.204        0.203           0.027
+       Category 1     Category 2        0.245        0.244           0.024
+       Category 2     Category 1        0.014        0.011           0.290
+       Category 2     Category 2        0.537        0.542          -0.104
+       Bivariate Pearson Chi-Square                                  0.089
+       Bivariate Log-Likelihood Chi-Square                           0.084
+     VIMENTIN       ALPHA_EN
+       Category 1     Category 1        0.354        0.348           0.146
+       Category 1     Category 2        0.095        0.099          -0.161
+       Category 2     Category 1        0.143        0.148          -0.160
+       Category 2     Category 2        0.408        0.405           0.072
+       Bivariate Pearson Chi-Square                                  0.062
+       Bivariate Log-Likelihood Chi-Square                           0.063
+     VIMENTIN       HNRNP_A3
+       Category 1     Category 1        0.279        0.277           0.055
+       Category 1     Category 2        0.170        0.170          -0.009
+       Category 2     Category 1        0.041        0.040           0.024
+       Category 2     Category 2        0.510        0.512          -0.052
+       Bivariate Pearson Chi-Square                                  0.004
+       Bivariate Log-Likelihood Chi-Square                           0.004
+     FIBRINOG       ALPHA_EN
+       Category 1     Category 1        0.211        0.208           0.101
+       Category 1     Category 2        0.007        0.007           0.005
+       Category 2     Category 1        0.286        0.288          -0.063
+       Category 2     Category 2        0.497        0.498          -0.026
+       Bivariate Pearson Chi-Square                                  0.011
+       Bivariate Log-Likelihood Chi-Square                           0.011
+     FIBRINOG       HNRNP_A3
+       Category 1     Category 1        0.204        0.200           0.128
+       Category 1     Category 2        0.014        0.014          -0.081
+       Category 2     Category 1        0.116        0.117          -0.067
+       Category 2     Category 2        0.667        0.668          -0.042
+       Bivariate Pearson Chi-Square                                  0.024
+       Bivariate Log-Likelihood Chi-Square                           0.024
+     ALPHA_EN       HNRNP_A3
+       Category 1     Category 1        0.279        0.282          -0.075
+       Category 1     Category 2        0.218        0.214           0.113
+       Category 2     Category 1        0.041        0.036           0.341
+       Category 2     Category 2        0.463        0.469          -0.152
+       Bivariate Pearson Chi-Square                                  0.139
+       Bivariate Log-Likelihood Chi-Square                           0.134
+
+       Overall Bivariate Pearson Chi-Square                          0.369
+       Overall Bivariate Log-Likelihood Chi-Square                   0.359
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.37755364D+03    0.0000000    0.0000000  EM
+              2 -0.35545096D+03   22.1026849    0.0585418  EM
+              3 -0.34770621D+03    7.7447510    0.0217885  EM
+              4 -0.34454615D+03    3.1600616    0.0090883  EM
+              5 -0.34311248D+03    1.4336682    0.0041610  EM
+              6 -0.34239813D+03    0.7143471    0.0020820  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.56343931D+03    0.0000000    0.0000000  EM
+              2 -0.43797308D+03  125.4662292    0.2226792  EM
+              3 -0.36413422D+03   73.8388605    0.1685922  EM
+              4 -0.34817622D+03   15.9579985    0.0438245  EM
+              5 -0.34450456D+03    3.6716612    0.0105454  EM
+              6 -0.34294171D+03    1.5628508    0.0045365  EM
+              7 -0.34211074D+03    0.8309649    0.0024231  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.77632469D+03    0.0000000    0.0000000  EM
+              2 -0.53880921D+03  237.5154798    0.3059486  EM
+              3 -0.41461267D+03  124.1965371    0.2305019  EM
+              4 -0.37459179D+03   40.0208895    0.0965260  EM
+              5 -0.35082561D+03   23.7661729    0.0634455  EM
+              6 -0.34547061D+03    5.3550014    0.0152640  EM
+              7 -0.34367883D+03    1.7917778    0.0051865  EM
+              8 -0.34282259D+03    0.8562408    0.0024914  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.68469173D+03    0.0000000    0.0000000  EM
+              2 -0.38353817D+03  301.1535663    0.4398382  EM
+              3 -0.35148740D+03   32.0507707    0.0835661  EM
+              4 -0.34672181D+03    4.7655857    0.0135583  EM
+              5 -0.34500974D+03    1.7120753    0.0049379  EM
+              6 -0.34401638D+03    0.9933609    0.0028792  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.53867692D+03    0.0000000    0.0000000  EM
+              2 -0.36469028D+03  173.9866325    0.3229888  EM
+              3 -0.35357148D+03   11.1188040    0.0304883  EM
+              4 -0.34897502D+03    4.5964604    0.0130001  EM
+              5 -0.34683951D+03    2.1355130    0.0061194  EM
+              6 -0.34540889D+03    1.4306142    0.0041247  EM
+              7 -0.34445505D+03    0.9538438    0.0027615  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.63433902D+03    0.0000000    0.0000000  EM
+              2 -0.36626121D+03  268.0778086    0.4226097  EM
+              3 -0.35423754D+03   12.0236729    0.0328281  EM
+              4 -0.34932040D+03    4.9171338    0.0138809  EM
+              5 -0.34647496D+03    2.8454444    0.0081457  EM
+              6 -0.34458588D+03    1.8890815    0.0054523  EM
+              7 -0.34327858D+03    1.3072999    0.0037938  EM
+              8 -0.34232344D+03    0.9551353    0.0027824  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+              7 -0.34211074D+03    0.8309649    0.0024231  EM
+              8 -0.34161550D+03    0.4952425    0.0014476  EM
+              9 -0.34129103D+03    0.3244681    0.0009498  EM
+             10 -0.34106151D+03    0.2295173    0.0006725  EM
+             11 -0.34089108D+03    0.1704348    0.0004997  EM
+             12 -0.34076097D+03    0.1301056    0.0003817  EM
+             13 -0.34065963D+03    0.1013391    0.0002974  EM
+             14 -0.34057893D+03    0.0807053    0.0002369  EM
+             15 -0.34051283D+03    0.0660998    0.0001941  EM
+             16 -0.34045689D+03    0.0559355    0.0001643  EM
+             17 -0.34040797D+03    0.0489268    0.0001437  EM
+             18 -0.34036392D+03    0.0440493    0.0001294  EM
+             19 -0.34032340D+03    0.0405227    0.0001191  EM
+             20 -0.34028561D+03    0.0377857    0.0001110  EM
+             21 -0.34025015D+03    0.0354606    0.0001042  EM
+             22 -0.34021683D+03    0.0333145    0.0000979  EM
+             23 -0.34018561D+03    0.0312213    0.0000918  EM
+             24 -0.34015648D+03    0.0291284    0.0000856  EM
+             25 -0.34012945D+03    0.0270301    0.0000795  EM
+             26 -0.34010451D+03    0.0249452    0.0000733  EM
+             27 -0.34008161D+03    0.0229030    0.0000673  EM
+             28 -0.34006067D+03    0.0209337    0.0000616  EM
+             29 -0.34004161D+03    0.0190627    0.0000561  EM
+             30 -0.34002430D+03    0.0173089    0.0000509  EM
+             31 -0.34000862D+03    0.0156839    0.0000461  EM
+             32 -0.33999442D+03    0.0141929    0.0000417  EM
+             33 -0.33998159D+03    0.0128356    0.0000378  EM
+             34 -0.33996998D+03    0.0116082    0.0000341  EM
+             35 -0.33995948D+03    0.0105039    0.0000309  EM
+             36 -0.33994996D+03    0.0095141    0.0000280  EM
+             37 -0.33994133D+03    0.0086294    0.0000254  EM
+             38 -0.33993349D+03    0.0078401    0.0000231  EM
+             39 -0.33992636D+03    0.0071365    0.0000210  EM
+             40 -0.33991985D+03    0.0065094    0.0000191  EM
+             41 -0.33991390D+03    0.0059504    0.0000175  EM
+             42 -0.33990844D+03    0.0054517    0.0000160  EM
+             43 -0.33990344D+03    0.0050062    0.0000147  EM
+             44 -0.33989883D+03    0.0046075    0.0000136  EM
+             45 -0.33989458D+03    0.0042501    0.0000125  EM
+             46 -0.33989065D+03    0.0039291    0.0000116  EM
+             47 -0.33988701D+03    0.0036400    0.0000107  EM
+             48 -0.33988363D+03    0.0033792    0.0000099  EM
+             49 -0.33988049D+03    0.0031432    0.0000092  EM
+             50 -0.33987756D+03    0.0029293    0.0000086  EM
+             51 -0.33987483D+03    0.0027350    0.0000080  EM
+             52 -0.33987227D+03    0.0025579    0.0000075  EM
+             53 -0.33986987D+03    0.0023963    0.0000071  EM
+             54 -0.33986762D+03    0.0022485    0.0000066  EM
+             55 -0.33986551D+03    0.0021130    0.0000062  EM
+             56 -0.33986352D+03    0.0019885    0.0000059  EM
+             57 -0.33986165D+03    0.0018739    0.0000055  EM
+             58 -0.33985988D+03    0.0017683    0.0000052  EM
+             59 -0.33985821D+03    0.0016707    0.0000049  EM
+             60 -0.33985663D+03    0.0015804    0.0000047  EM
+             61 -0.33985513D+03    0.0014967    0.0000044  EM
+             62 -0.33985371D+03    0.0014190    0.0000042  EM
+             63 -0.33985237D+03    0.0013467    0.0000040  EM
+             64 -0.33985109D+03    0.0012795    0.0000038  EM
+             65 -0.33984987D+03    0.0012168    0.0000036  EM
+             66 -0.33984625D+03    0.0036159    0.0000106  QN
+             67 -0.33984431D+03    0.0019427    0.0000057  EM
+             68 -0.33984313D+03    0.0011812    0.0000035  EM
+             69 -0.33984211D+03    0.0010154    0.0000030  EM
+             70 -0.33984120D+03    0.0009166    0.0000027  EM
+             71 -0.33984035D+03    0.0008469    0.0000025  EM
+             72 -0.33983956D+03    0.0007937    0.0000023  EM
+             73 -0.33983881D+03    0.0007508    0.0000022  EM
+             74 -0.33983809D+03    0.0007143    0.0000021  EM
+             75 -0.33983741D+03    0.0006823    0.0000020  EM
+             76 -0.33983676D+03    0.0006535    0.0000019  EM
+             77 -0.33983613D+03    0.0006270    0.0000018  EM
+             78 -0.33983553D+03    0.0006024    0.0000018  EM
+             79 -0.33983179D+03    0.0037342    0.0000110  QN
+             80 -0.33982989D+03    0.0018983    0.0000056  EM
+             81 -0.33982915D+03    0.0007409    0.0000022  EM
+             82 -0.33982866D+03    0.0004979    0.0000015  EM
+             83 -0.33982825D+03    0.0004071    0.0000012  EM
+             84 -0.33982788D+03    0.0003630    0.0000011  EM
+             85 -0.33982755D+03    0.0003366    0.0000010  EM
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              F             C_F
+              ________      ________
+               -0.030        -0.624
+
+
+           Covariances
+              F             C_F
+              ________      ________
+ F             71.592
+ C_F           68.527        69.461
+
+
+           Correlations
+              F             C_F
+              ________      ________
+ F              1.000
+ C_F            0.972         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Sample proportions and estimated probabilities
+  Item characteristic curves
+  Information curves
+  Latent variable distribution plots
+
+     Beginning Time:  23:13:53
+        Ending Time:  23:13:56
+       Elapsed Time:  00:00:03
+
+
+Mplus VERSION 8.4 DEMO (Mac) has the following limitations:
+  Maximum number of dependent variables: 6
+  Maximum number of independent variables: 2
+  Maximum number of between variables: 2
+  Maximum number of continuous latent variables in time series analysis: 2
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

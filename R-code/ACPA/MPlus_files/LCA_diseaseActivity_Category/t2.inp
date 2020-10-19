@@ -1,0 +1,28 @@
+TITLE: LCA - 3 step
+DATA: FILE IS /Users/shrumin/Desktop/RA/ACPA/MPlus/demo.dat;
+
+VARIABLE: 
+  NAMES = Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3
+     DAS28CRP RA_Activity;
+  MISSING=.;
+  
+USEVARIABLES=Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3 RA_Activity;
+
+CATEGORICAL= Filaggrin Vimentin Fibrinogen
+     alpha_enolase hnRNP_A3;
+AUXILIARY=RA_Activity(R3STEP);
+
+CLASSES=c(2);
+
+ANALYSIS:
+TYPE =MIXTURE;
+ 
+ MODEL:
+ !no model is needed, LCA is default;
+OUTPUT: TECH1 TECH8;
+
+Savedata:
+    file is class.txt;
+    save = cprob;
