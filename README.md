@@ -1,3 +1,3 @@
-# Rheumatoid_Arthritis 
+#  Rheumatoid_Arthritis - Analysis and visualisation of autoantibody profiles of rheumatoid  arthritis patients from SERA cohort
 
-Analysis and visualisation of autoantibody profiles of rheumatoid  arthritis patients from SERA cohort
+
